@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public void Boost(float speedMultiplier)
     {
         StopCoroutine("BoostTimer");
-        actualRunningSpeed *= speedMultiplier;
+        actualRunningSpeed = startRunningSpeed * speedMultiplier;
         StartCoroutine(BoostTimer(3f));
 
     }

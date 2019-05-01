@@ -5,7 +5,7 @@ using UnityEngine;
 public class CustomCharacterController : MonoBehaviour
 {
     private Animator characterAnimator;
-    public bool isRunning = true;
+    // public bool isRunning = true;
     public float jumpForce = 50f, changeLineSpeed = 5f;
     public float firstLinePos, lineDistance;
     private int lineNumber = 1, linesCount = 3;
@@ -22,16 +22,21 @@ public class CustomCharacterController : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, Vector3.down * 0.05f, Color.red);
         Vector3 newPos = transform.position;
         newPos.x = Mathf.Lerp(newPos.x, firstLinePos + (lineNumber * lineDistance), Time.deltaTime * changeLineSpeed);
         transform.position = newPos;
     }
 
+    bool isGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.05f);
+    }
     void CheckInput(SwipeController.SwipeType type)
     {
-        if(type == SwipeController.SwipeType.UP && isRunning)        
+        if(type == SwipeController.SwipeType.UP && isGrounded())        
         {
-            isRunning = false;
+            
             Jump();
         }
 
@@ -45,7 +50,7 @@ public class CustomCharacterController : MonoBehaviour
     {
         rb.AddForce(Vector3.up * jumpForce);
         characterAnimator.SetTrigger("jumping");
-        isRunning = true;
+       
     }
 
     void ChangeLine(int direction)
