@@ -7,8 +7,10 @@ public class RoadPartController : MonoBehaviour
 
     GameManager GM;
     private Vector3 movingVector;
+    // [HideInInspector]
+    // public float respawnOffset;
     [HideInInspector]
-    public float respawnOffset;
+    public GameObject prevRoadObj;
     public bool isFirstPart = false;
     
     public GameObject road;
@@ -32,14 +34,18 @@ public class RoadPartController : MonoBehaviour
     }
     void FixedUpdate()
     {
-         if(!GM.gameOver)
+         
+        
+        if(!GM.gameOver)
         {
             Moving();
         }
+        
     }
 
     void Moving()
     {
+        
         transform.Translate(movingVector * Time.deltaTime * GM.actualRunningSpeed );
         
     }
@@ -47,7 +53,7 @@ public class RoadPartController : MonoBehaviour
     public void Respawn()
     {
         Vector3 newPos = transform.position;
-        newPos.z = respawnOffset;
+        newPos.z = prevRoadObj.transform.position.z + road.transform.localScale.z;////////
         transform.position = newPos;
         GetComponent<RoadObjectsSpawner>().DisactivateObjects();
         GetComponent<RoadObjectsSpawner>().RespawnObjects();

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6245410403396606046}
   - component: {fileID: 6245410403396606043}
   - component: {fileID: 7116187006344326866}
-  - component: {fileID: 1194546413152344855}
+  - component: {fileID: 5188637615384531842}
   m_Layer: 0
   m_Name: RoadPart
   m_TagString: road
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnOffset: 0
+  prevRoadObj: {fileID: 0}
   isFirstPart: 0
   road: {fileID: 0}
 --- !u!114 &7116187006344326866
@@ -137,7 +138,7 @@ MonoBehaviour:
   roadPref: {fileID: 0}
   firstLinePosition: -1.5
   lineWidth: 1.5
---- !u!54 &1194546413152344855
+--- !u!54 &5188637615384531842
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,5 +152,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0

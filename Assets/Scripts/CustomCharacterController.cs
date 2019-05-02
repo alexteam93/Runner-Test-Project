@@ -15,14 +15,15 @@ public class CustomCharacterController : MonoBehaviour
 
     void Start()
     {
+        GM = FindObjectOfType<GameManager>();
         characterAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         SwipeController.SwipeEvent += CheckInput;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 0.05f, Color.red);
+        
         Vector3 newPos = transform.position;
         newPos.x = Mathf.Lerp(newPos.x, firstLinePos + (lineNumber * lineDistance), Time.deltaTime * changeLineSpeed);
         transform.position = newPos;
@@ -30,13 +31,14 @@ public class CustomCharacterController : MonoBehaviour
 
     bool isGrounded()
     {
+        
         return Physics.Raycast(transform.position, Vector3.down, 0.05f);
     }
     void CheckInput(SwipeController.SwipeType type)
     {
         if(type == SwipeController.SwipeType.UP && isGrounded())        
         {
-            
+            // Debug.Log("Jump");
             Jump();
         }
 
@@ -44,6 +46,10 @@ public class CustomCharacterController : MonoBehaviour
             ChangeLine(1);
         else if(type == SwipeController.SwipeType.LEFT)
             ChangeLine(-1);
+    }
+    void OnDestroy()
+    {
+        SwipeController.SwipeEvent -= CheckInput;
     }
 
     void Jump()

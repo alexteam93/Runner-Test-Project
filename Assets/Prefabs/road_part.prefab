@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnOffset: 0
+  prevRoadObj: {fileID: 0}
   isFirstPart: 0
   road: {fileID: 6245410403396606016, guid: 93b67f4fde38fc94aba4698cdcd92636, type: 3}
 --- !u!114 &4158939661445196036

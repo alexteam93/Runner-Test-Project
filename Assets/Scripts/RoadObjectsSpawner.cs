@@ -11,7 +11,7 @@ public class RoadObjectsSpawner : MonoBehaviour
         public string name;
         public GameObject RoadObjectsPrefab;
         public int maxAmount;
-        // public bool randomAmount;
+        
     }
 
     public Pool[] pools;
@@ -26,7 +26,7 @@ public class RoadObjectsSpawner : MonoBehaviour
    
     void Start()
     {
-        // roadPref = GetComponent<RoadPartController>().road;
+        
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)
